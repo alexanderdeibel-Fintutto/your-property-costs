@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { ProductsProvider } from "@/contexts/ProductsContext";
 import Index from "./pages/Index";
 import Berechnungen from "./pages/Berechnungen";
+import Kaufnebenkosten from "./pages/Kaufnebenkosten";
 import Pricing from "./pages/Pricing";
 import Success from "./pages/Success";
 import NotFound from "./pages/NotFound";
@@ -23,6 +24,7 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/kaufnebenkosten" element={<Kaufnebenkosten />} />
               <Route path="/berechnungen" element={<Berechnungen />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/success" element={<Success />} />
