@@ -56,15 +56,30 @@ export const Header = ({ onLoginClick }: HeaderProps) => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
-          <Link
-            to="/"
-            className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary ${
-              location.pathname === '/' ? 'text-primary' : 'text-muted-foreground'
-            }`}
-          >
-            <Calculator className="h-4 w-4" />
-            Rechner
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary ${
+                  location.pathname === '/' || location.pathname === '/kaufnebenkosten' ? 'text-primary' : 'text-muted-foreground'
+                }`}
+              >
+                <Calculator className="h-4 w-4" />
+                Rechner
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem asChild>
+                <Link to="/" className="flex items-center gap-2">
+                  📈 Rendite-Rechner
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/kaufnebenkosten" className="flex items-center gap-2">
+                  🏠 Kaufnebenkosten-Rechner
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           {user && (
             <Link
               to="/berechnungen"
