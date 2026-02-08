@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Save, RotateCcw } from 'lucide-react';
 import { useCalculator, getDefaultInputs } from '@/hooks/useCalculator';
 import type { CalculatorInputs } from '@/types/calculator';
+import heroGradient from '@/assets/hero-gradient.png';
 
 const Index = () => {
   // Check for loaded calculation from sessionStorage
@@ -41,8 +42,9 @@ const Index = () => {
       <Header onLoginClick={() => setShowAuthModal(true)} />
 
       {/* Hero Section */}
-      <div className="gradient-primary text-white py-8 px-4">
-        <div className="container">
+      <div className="relative text-white py-8 px-4 overflow-hidden">
+        <img src={heroGradient} alt="" className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
+        <div className="container relative z-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">Rendite-Rechner</h1>
           <p className="text-white/80 text-lg">
             Berechne die Rendite deiner Immobilien-Investition – live und kostenlos

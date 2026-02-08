@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { RotateCcw, Calculator } from 'lucide-react';
 import { useKaufnebenkosten, getDefaultKaufnebenkostenInputs } from '@/hooks/useKaufnebenkosten';
 import type { KaufnebenkostenInputs } from '@/types/kaufnebenkosten';
+import heroGradient from '@/assets/hero-gradient.png';
 
 const Kaufnebenkosten = () => {
   const [inputs, setInputs] = useState<KaufnebenkostenInputs>(getDefaultKaufnebenkostenInputs());
@@ -32,8 +33,9 @@ const Kaufnebenkosten = () => {
       <Header onLoginClick={() => setShowAuthModal(true)} />
 
       {/* Hero Section */}
-      <div className="gradient-primary text-white py-8 px-4">
-        <div className="container">
+      <div className="relative text-white py-8 px-4 overflow-hidden">
+        <img src={heroGradient} alt="" className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
+        <div className="container relative z-10">
           <div className="flex items-center gap-3 mb-2">
             <Calculator className="h-8 w-8" />
             <h1 className="text-3xl md:text-4xl font-bold">Kaufnebenkosten-Rechner</h1>
