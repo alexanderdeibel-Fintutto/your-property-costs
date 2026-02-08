@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Building2, Scale, BookOpen, Users, Receipt, TrendingUp } from 'lucide-react';
+import { Building2, Scale, BookOpen, Users, Receipt, TrendingUp, MapPin } from 'lucide-react';
 import type { KaufnebenkostenResults } from '@/types/kaufnebenkosten';
 import { BUNDESLAENDER } from '@/types/kaufnebenkosten';
+import heroGradient from '@/assets/hero-gradient.png';
 
 interface Props {
   results: KaufnebenkostenResults;
@@ -64,16 +65,22 @@ export const KaufnebenkostenResultsSection = ({ results }: Props) => {
   ];
 
   return (
-    <div className="space-y-4">
-      {/* Primary Result */}
-      <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
-        <CardContent className="pt-6">
+    <div className="space-y-3">
+      {/* Primary Hero Result */}
+      <Card className="relative overflow-hidden border-0">
+        <img
+          src={heroGradient}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        />
+        <CardContent className="relative z-10 pt-6">
           <div className="text-center">
-            <p className="text-sm text-muted-foreground mb-1">Kaufnebenkosten gesamt</p>
-            <p className="text-4xl font-bold font-mono gradient-text">
+            <p className="text-sm text-white/80 mb-1">Kaufnebenkosten gesamt</p>
+            <p className="text-4xl font-bold font-mono text-white">
               {formatCurrency(results.nebenkostenGesamt)}
             </p>
-            <p className="text-sm text-muted-foreground mt-2">
+            <p className="text-sm text-white/70 mt-2">
               {formatPercent(results.nebenkostenProzent)} vom Kaufpreis
             </p>
           </div>
@@ -81,27 +88,25 @@ export const KaufnebenkostenResultsSection = ({ results }: Props) => {
       </Card>
 
       {/* Cost Breakdown Grid */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-2">
         {costItems.filter(item => !item.hidden).map((item) => (
-          <Card key={item.label} className="overflow-hidden">
-            <CardContent className="p-4">
-              <div className="flex items-start gap-3">
-                <div className={`p-2 rounded-lg ${item.bgColor}`}>
-                  <item.icon className={`h-4 w-4 ${item.color}`} />
+          <Card key={item.label} className="overflow-hidden border border-border/50">
+            <CardContent className="p-3">
+              <div className="flex items-center gap-2">
+                <div className={`p-1.5 rounded-md ${item.bgColor}`}>
+                  <item.icon className={`h-3.5 w-3.5 ${item.color}`} />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs text-muted-foreground truncate">{item.label}</p>
-                  <p className="font-mono font-semibold text-sm">{formatCurrency(item.value)}</p>
-                  <p className="text-xs text-muted-foreground">{formatPercent(item.percent)}</p>
-                </div>
+                <span className="text-xs text-muted-foreground truncate">{item.label}</span>
               </div>
+              <p className="font-mono font-bold text-xl mt-2">{formatCurrency(item.value)}</p>
+              <p className="text-xs text-muted-foreground">{formatPercent(item.percent)}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Total Breakdown */}
-      <Card>
+      <Card className="border border-border/50">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <Receipt className="h-4 w-4 text-primary" />
@@ -137,6 +142,3 @@ export const KaufnebenkostenResultsSection = ({ results }: Props) => {
     </div>
   );
 };
-
-// Small MapPin import for the badge
-import { MapPin } from 'lucide-react';
